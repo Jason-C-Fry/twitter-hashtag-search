@@ -1,4 +1,4 @@
-# twitter-iot
+# twitter-hashtag-search
 
 ## Project setup
 ```
