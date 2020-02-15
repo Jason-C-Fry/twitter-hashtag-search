@@ -1,12 +1,7 @@
 <template>
   <div class="stats-wrapper">
-      <h4>Top Twenty Keywords Found</h4>
-    <ul>
-      <li v-for="(pairValue, index) of theList" :key="index">
-        <b>{{ index +1 }}:</b>
-        <span v-for="(item, key) of pairValue" :key="key">&nbsp;{{key}} {{item}}</span>
-      </li>
-    </ul>
+    <h4>Top Twenty Keywords Found</h4>
+    <b-table hover :items="theList" class="stats-table"/>
   </div>
 </template>
 
@@ -42,7 +37,9 @@ computed: {
         });
     });
 
+    let count = 0;
     while (finalList.length < 20) {
+        count++;
         let highest = 0;
         let highestProp = null;
         for (const key in tempList) {
@@ -51,7 +48,7 @@ computed: {
             highestProp = key;
         }
         }
-        finalList.push({ [highestProp]: highest });
+        finalList.push({"rank": count, "keyword" :highestProp, "count": highest });
         delete tempList[highestProp];
     }
     return finalList;
@@ -63,8 +60,11 @@ methods: {}
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-ul {
-    list-style-type: none;
-    padding: 0;
+.stats-wrapper {
+    padding-top: 20px;
+    margin: auto
+}
+.stats-table{
+    margin: auto
 }
 </style>

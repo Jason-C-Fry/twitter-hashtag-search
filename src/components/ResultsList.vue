@@ -1,10 +1,10 @@
 <template>
   <div class="results-list-wrapper">
-    <ul>
-      <li v-for="tweet in searchResults" :key="tweet.id">
-        <Tweet :tweet="tweet"/>
-      </li>
-    </ul>
+    <b-list-group>
+      <b-list-group-item v-for="tweet in searchResults" :key="tweet.id" >
+          <Tweet :tweet="tweet"/>
+      </b-list-group-item>
+    </b-list-group>
   </div>
 </template>
 

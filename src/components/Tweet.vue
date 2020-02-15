@@ -1,8 +1,7 @@
 <template>
   <div class="tweet-wrapper">
-        <h2 class="tweeter-name">{{ tweet.user.name }} - {{ tweet.user.screen_name}}</h2>
-
-        <div class="tweet">{{ tweet.full_text }}</div>
+        <h4 class="tweeter-name">{{ tweet.user.name }} - <a :href="tweeterUrl" target="_blank">@{{ tweet.user.screen_name}}</a></h4>
+        <div class="tweet">{{ tweet.full_text }}&nbsp;<a :href="postUrl" target="_blank" title="View Full Post"><b-icon-box-arrow-up-right/></a></div>
   </div>
 </template>
 
@@ -15,7 +14,15 @@ props: {
 data: function() {
     return {};
 },
-methods: {}
+methods: {},
+computed: {
+    tweeterUrl: function(){
+        return "http://www.twitter.com/" + this.tweet.user.screen_name;
+    },
+    postUrl: function(){
+        return "http://www.twitter.com/" + this.tweet.user.screen_name + "/status/" + this.tweet.id_str;
+    }
+}
 };
 </script>
 
